@@ -3,6 +3,7 @@ package com.epherical.octoecon.api;
 import com.epherical.octoecon.api.user.FakeUser;
 import com.epherical.octoecon.api.user.UniqueUser;
 import com.epherical.octoecon.api.user.User;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -17,18 +18,25 @@ public interface Economy {
 
     Currency getDefaultCurrency();
 
+    Currency getCurrency(String identifier);
+
     /**
-     * @param uuid the UUID of the account to get or create.
+     * @param identifier the identifier of the account to get or create.
      * @return The {@link User} if it exists.
      */
-    Optional<User> getOrCreateAccount(UUID uuid);
+    Optional<FakeUser> getOrCreateAccount(ResourceLocation identifier);
 
     /**
-     * @param uuid the UUID of the account to get or create
+     * @param identifier the identifier of the account to get or create
      * @return The {@link UniqueUser} if it exists.
      */
-    Optional<UniqueUser> getOrCreatePlayerAccount(UUID uuid);
+    Optional<UniqueUser> getOrCreatePlayerAccount(UUID identifier);
 
+    /**
+     * @param identifier the identifier of the account to get or create
+     * @return The {@link User} if it exists.
+     */
+    Optional<User> getOrCreatePlayerAccount(String identifier);
 
     Collection<UniqueUser> getUniqueUsers();
 
@@ -36,8 +44,12 @@ public interface Economy {
 
     Collection<FakeUser> getFakeUsers();
 
-    boolean hasAccount(UUID uuid);
+    boolean hasAccount(UUID identifier);
 
-    boolean deleteAccount(UUID uuid);
+    boolean hasAccount(String identifier);
+
+    boolean deleteAccount(UUID identifier);
+
+    boolean deleteAccount(String identifier);
 
 }

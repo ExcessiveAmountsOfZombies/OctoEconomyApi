@@ -4,7 +4,6 @@ import net.minecraft.network.chat.Component;
 
 public interface Currency {
 
-
     Component getCurrencySingularName();
 
     Component getCurrencyPluralName();
@@ -18,5 +17,7 @@ public interface Currency {
     Component format(double value);
 
     Component format(double value, int decimalPlaces);
+
+    String getIdentifier();
 
 }

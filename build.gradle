@@ -1,0 +1,2 @@
+version = project.economy_api_version
+group = project.common_group + project.economy_api_group
