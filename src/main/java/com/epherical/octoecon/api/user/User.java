@@ -5,12 +5,16 @@ import com.epherical.octoecon.api.transaction.Transaction;
 import net.minecraft.network.chat.Component;
 
 import java.util.Map;
-import java.util.UUID;
 
+/**
+ * The base user.
+ */
 public interface User {
 
-    UUID getUserID();
-
+    /**
+     * Should return a display name that is meant for end-user viewing.
+     * @return A display name for the User.
+     */
     Component getDisplayName();
 
     double getBalance(Currency currency);
@@ -30,5 +34,11 @@ public interface User {
     Transaction depositMoney(double amount);
 
     Transaction withdrawMoney(double amount);
+
+    /**
+     * A method to identify a user, not always meant for end-user viewing.
+     * @return The string identification for the {@link User}
+     */
+    String getIdentifier();
 
 }

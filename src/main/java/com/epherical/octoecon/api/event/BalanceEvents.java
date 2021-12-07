@@ -5,6 +5,9 @@ import com.epherical.octoecon.api.user.User;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 
+/**
+ * All events related to a users balance.
+ */
 public final class BalanceEvents {
 
     public static final Event<BalanceAdd> BALANCE_ADD_EVENT = EventFactory.createArrayBacked(BalanceAdd.class, calls -> (user, transaction) -> {
@@ -19,24 +22,25 @@ public final class BalanceEvents {
         }
     });
 
-    public static final Event<BalanceCheck> BALANCE_CHECK_EVENT = EventFactory.createArrayBacked(BalanceCheck.class, calls -> (user, checkForAmount) -> {
-        for (BalanceCheck call : calls) {
-            call.onBalanceCheck(user, checkForAmount);
-        }
-    });
-
-
+    /**
+     * Should be called when an action leads to the users balance increasing
+     */
     public interface BalanceAdd {
+        /**
+         * Called whenever there is an action that leads to the users balance increasing.
+         * @param user {@link User} involved in the balance addition
+         * @param transaction the {@link Transaction} involved.
+         */
         void onBalanceAdd(User user, Transaction transaction);
     }
 
     public interface BalanceRemove {
+        /**
+         * Called whenever there is an action that leads to the users balance decreasing
+         * @param user {@link User} involved in the balance removal
+         * @param transaction the {@link Transaction} involved.
+         */
         void onBalanceRemove(User user, Transaction transaction);
     }
-
-    public interface BalanceCheck {
-        void onBalanceCheck(User user, double checkForAmount);
-    }
-
 
 }

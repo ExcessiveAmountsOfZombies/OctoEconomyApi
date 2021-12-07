@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "octo-economy-api",
+  "version": "${version}",
+  "name": "Octo Economy API",
+  "description": "Adds an Economy API for other mods to reference",
+  "authors": [],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "assets/ocot-economy-api/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.epherical.octoecon.OctoEconomy"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.12.5",
+    "minecraft": ">=1.17.1"
+  }
+}
