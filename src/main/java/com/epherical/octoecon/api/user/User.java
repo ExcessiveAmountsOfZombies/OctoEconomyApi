@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * The base user.
  */
-public interface User {
+public interface User extends EconomyIdentity {
 
     /**
      * Should return a display name that is meant for end-user viewing.
@@ -45,11 +45,5 @@ public interface User {
      * For implementations that with to add a transaction through other methods directly to the user.
      */
     void addTransaction(Transaction transaction);
-
-    /**
-     * A method to identify a user, not always meant for end-user viewing.
-     * @return The string identification for the {@link User}
-     */
-    String getIdentifier();
 
 }

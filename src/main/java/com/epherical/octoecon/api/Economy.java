@@ -4,9 +4,9 @@ import com.epherical.octoecon.api.user.FakeUser;
 import com.epherical.octoecon.api.user.UniqueUser;
 import com.epherical.octoecon.api.user.User;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface Economy {
@@ -17,19 +17,22 @@ public interface Economy {
 
     Currency getDefaultCurrency();
 
+    @Nullable
     Currency getCurrency(ResourceLocation identifier);
 
     /**
      * @param identifier the identifier of the account to get or create.
-     * @return The {@link User} if it exists.
+     * @return The {@link User} if it exists or was successfully created.
      */
-    Optional<FakeUser> getOrCreateAccount(ResourceLocation identifier);
+    @Nullable
+    FakeUser getOrCreateAccount(ResourceLocation identifier);
 
     /**
      * @param identifier the identifier of the account to get or create.
-     * @return The {@link UniqueUser} if it exists.
+     * @return The {@link UniqueUser} if it exists or was successfully created.
      */
-    Optional<UniqueUser> getOrCreatePlayerAccount(UUID identifier);
+    @Nullable
+    UniqueUser getOrCreatePlayerAccount(UUID identifier);
 
     Collection<UniqueUser> getUniqueUsers();
 

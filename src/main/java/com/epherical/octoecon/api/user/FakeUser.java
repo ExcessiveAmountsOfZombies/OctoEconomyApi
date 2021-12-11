@@ -13,5 +13,5 @@ public interface FakeUser extends User {
      * The ID for a {@link FakeUser}
      * @return the {@link ResourceLocation} for this user.
      */
-    ResourceLocation getID();
+    ResourceLocation getResourceLocation();
 }
