@@ -1,9 +1,17 @@
 package com.epherical.octoecon.api.transaction;
 
+import com.epherical.octoecon.api.Currency;
 import com.epherical.octoecon.api.user.User;
 import net.minecraft.world.entity.player.Player;
 
 public interface Transaction {
+
+
+    /**
+     * Which currency was used during the transaction.
+     * @return the {@link Currency} involved in the transaction
+     */
+    Currency getCurrency();
 
     /**
      * How much the transaction is worth. This does not return the entire value of the {@link User} just the delta of their value.
@@ -27,6 +35,11 @@ public interface Transaction {
     Response getTransactionResponse();
 
     /**
+     * Can be used to set the transaction response if it was pending further processing.
+     */
+    void setTransactionResponse(Response response);
+
+    /**
      * @return return the {@link Type} of transaction. Implementations can further add their own Types.
      */
     Type getTransactionType();
@@ -35,6 +48,7 @@ public interface Transaction {
         Response SUCCESS = () -> "success";
         Response FAIL = () -> "fail";
         Response NO_IMPLEMENTATION = () -> "no_implementation";
+        Response PENDING = () -> "pending";
 
         String type();
     }
@@ -42,6 +56,7 @@ public interface Transaction {
     interface Type {
         Type DEPOSIT = () -> "deposit";
         Type WITHDRAW = () -> "withdraw";
+        Type SET = () -> "set";
 
 
         String type();

@@ -17,6 +17,12 @@ public interface User {
      */
     Component getDisplayName();
 
+    /**
+     * Depending on implementation will get the balance of a {@link Currency} as it is, or it will get the balance after processing
+     * pending {@link Transaction transactions}.
+     * @param currency The currency to get the balance of
+     * @return the value in that currency
+     */
     double getBalance(Currency currency);
 
     Map<Currency, Double> getAllBalances();
@@ -31,9 +37,14 @@ public interface User {
 
     Transaction sendTo(User user, Currency currency, double amount);
 
-    Transaction depositMoney(double amount);
+    Transaction depositMoney(Currency currency, double amount, String reason);
 
-    Transaction withdrawMoney(double amount);
+    Transaction withdrawMoney(Currency currency, double amount, String reason);
+
+    /**
+     * For implementations that with to add a transaction through other methods directly to the user.
+     */
+    void addTransaction(Transaction transaction);
 
     /**
      * A method to identify a user, not always meant for end-user viewing.

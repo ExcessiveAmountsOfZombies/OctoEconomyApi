@@ -7,18 +7,17 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 public interface Economy {
 
     boolean enabled();
 
-    Set<Currency> getCurrencies();
+    Collection<Currency> getCurrencies();
 
     Currency getDefaultCurrency();
 
-    Currency getCurrency(String identifier);
+    Currency getCurrency(ResourceLocation identifier);
 
     /**
      * @param identifier the identifier of the account to get or create.
@@ -27,16 +26,10 @@ public interface Economy {
     Optional<FakeUser> getOrCreateAccount(ResourceLocation identifier);
 
     /**
-     * @param identifier the identifier of the account to get or create
+     * @param identifier the identifier of the account to get or create.
      * @return The {@link UniqueUser} if it exists.
      */
     Optional<UniqueUser> getOrCreatePlayerAccount(UUID identifier);
-
-    /**
-     * @param identifier the identifier of the account to get or create
-     * @return The {@link User} if it exists.
-     */
-    Optional<User> getOrCreatePlayerAccount(String identifier);
 
     Collection<UniqueUser> getUniqueUsers();
 
@@ -46,10 +39,10 @@ public interface Economy {
 
     boolean hasAccount(UUID identifier);
 
-    boolean hasAccount(String identifier);
+    boolean hasAccount(ResourceLocation identifier);
 
     boolean deleteAccount(UUID identifier);
 
-    boolean deleteAccount(String identifier);
+    boolean deleteAccount(ResourceLocation identifier);
 
 }
