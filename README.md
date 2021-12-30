@@ -14,8 +14,8 @@ repositories {
 in your build.gradle and you can include the API with
 
 ```
-modApi "com.epherical.octo-economy-api:OctoEconomyApi:5137175b1c"
-include "com.epherical.octo-economy-api:OctoEconomyApi:5137175b1c"
+modApi "com.github.ExcessiveAmountsOfZombies:OctoEconomyApi:5137175b1c"
+include "com.github.ExcessiveAmountsOfZombies:OctoEconomyApi:5137175b1c"
 ```
 
 `5137175b1c` corresponds to version 1.0.0 of the API
