@@ -1,8 +1,26 @@
 # OctoEconomyApi
 Economy API for Fabric
 
+There are two options to make use of this API in your project, jitpack or clone and build locally.
 
-Currently I have no maven so to make use of this API you will need to clone the repo, build it locally and then 
+### Jitpack
+
+```
+repositories {
+  maven { url = "https://jitpack.io" }
+}
+```
+
+in your build.gradle and you can include the API with
+
+```
+modApi "com.epherical.octo-economy-api:OctoEconomyApi:5137175b1c"
+include "com.epherical.octo-economy-api:OctoEconomyApi:5137175b1c"
+```
+
+`5137175b1c` corresponds to version 1.0.0 of the API
+
+### Local
 
 `./gradlew publishToMavenLocal`
 
@@ -23,6 +41,8 @@ include "com.epherical.octo-economy-api:OctoEconomyApi:1.0.0"
 
 Just-In-Jar might not always be necessary.
 
+
+If you want your mod added to this list here, submit a PR!
 
 # Economy Implementations
 
