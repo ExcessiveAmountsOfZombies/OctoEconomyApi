@@ -34,6 +34,15 @@ public interface Economy {
     @Nullable
     UniqueUser getOrCreatePlayerAccount(UUID identifier);
 
+    /**
+     * A method to grab a {@link UniqueUser UniqueUser's} account, if it exists by the name.
+     * The account should not be created if it doesn't exist, as player accounts should always be identifiable with UUIDs.
+     * @param name The name of the account.
+     * @return A {@link UniqueUser} if the account exists.
+     */
+    @Nullable
+    UniqueUser getPlayerAccountByName(String name);
+
     Collection<UniqueUser> getUniqueUsers();
 
     Collection<User> getAllUsers();
