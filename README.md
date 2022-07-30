@@ -52,5 +52,7 @@ If you want your mod added to this list here, submit a PR!
 # Content mods making use of this API
 
 [Shoppy](https://www.curseforge.com/minecraft/mc-mods/shoppy) - Thonk
+
 [The Guild](https://www.curseforge.com/minecraft/mc-mods/guild) - fulmineo64
+
 [Flan](https://www.curseforge.com/minecraft/mc-mods/flan) - Flemmli97
