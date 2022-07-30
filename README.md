@@ -14,8 +14,8 @@ repositories {
 in your build.gradle and you can include the API with
 
 ```
-modApi "com.epherical.octo-economy-api:OctoEconomyApi:5137175b1c"
-include "com.epherical.octo-economy-api:OctoEconomyApi:5137175b1c"
+modApi "com.github.ExcessiveAmountsOfZombies:OctoEconomyApi:5137175b1c"
+include "com.github.ExcessiveAmountsOfZombies:OctoEconomyApi:5137175b1c"
 ```
 
 `5137175b1c` corresponds to version 1.0.0 of the API
@@ -46,9 +46,13 @@ If you want your mod added to this list here, submit a PR!
 
 # Economy Implementations
 
-EightsEconomyP - Thonk
+[EightsEconomyP](https://www.curseforge.com/minecraft/mc-mods/eightseconomyp) - Thonk
 
 
 # Content mods making use of this API
 
-Shoppy - Thonk
+[Shoppy](https://www.curseforge.com/minecraft/mc-mods/shoppy) - Thonk
+
+[The Guild](https://www.curseforge.com/minecraft/mc-mods/guild) - fulmineo64
+
+[Flan](https://www.curseforge.com/minecraft/mc-mods/flan) - Flemmli97
