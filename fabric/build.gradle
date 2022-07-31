@@ -5,18 +5,13 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
+version = project.mod_version
+group = project.maven_group
 archivesBaseName = archives_base_name
 
 
 repositories {
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots"}
-    maven { url 'https://jitpack.io' }
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
+
 }
 
 configurations {
@@ -31,12 +26,8 @@ dependencies {
         parchment("org.parchmentmc.data:parchment-1.18.1:2021.12.19")
     }
     shade(rootProject)
-    compileOnly(rootProject)
-    implementation(rootProject)
-    //modImplementation(include("org.spongepowered:configurate-hocon:4.1.2"))
-    //modImplementation(include("org.spongepowered:configurate-core:4.1.2"))
-    //include("com.typesafe:config:1.4.1")
-    //include("io.leangen.geantyref:geantyref:1.3.11")
+    shadow(rootProject)
+    testCompileOnly('org.jetbrains:annotations:23.0.0')
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Fabric API. This is technically optional, but you probably want it anyway.
@@ -73,9 +64,15 @@ loom {
 
 sourceSets {
     main {
+        java {
+            srcDirs += [
+                    rootProject.sourceSets.main.java
+            ]
+        }
         resources {
             srcDirs += [
-                    "src/main/generated"
+                    "src/main/generated",
+                    rootProject.sourceSets.main.resources
             ]
         }
     }
@@ -134,7 +131,15 @@ artifacts {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
+            artifactId = "${archives_base_name}-" + artifactId
+            version = version + "-${minecraft_version}"
+            // add all the jars that should be included when publishing to maven
+            artifact(remapJar) {
+                builtBy remapJar
+            }
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
         }
     }
 
