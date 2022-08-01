@@ -82,10 +82,8 @@ tasks.processResources.dependsOn(rootProject.tasks.processResources)
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.0.15'
-    implementation(rootProject)
-    shade(rootProject) {
-        exclude(group: 'org.jetbrains', module: 'annotations')
-    }
+    shadow(rootProject)
+    shade(rootProject)
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
@@ -114,8 +112,7 @@ jar {
                 "Implementation-Title": "${archives_base_name}",
                 "Implementation-Version": "${mod_version}",
                 "Implementation-Vendor" :"epherical.com",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "octo_economy_api.mixins.json"
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
@@ -127,3 +124,46 @@ reobf {
 }
 
 jar.finalizedBy('reobfJar')
+
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+// configure the maven publication
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = "${archives_base_name}-" + artifactId
+            version = version + "-${minecraft_version}"
+            // add all the jars that should be included when publishing to maven
+
+            artifact jar
+            artifact sourceJar
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += [
+                    rootProject.sourceSets.main.java
+            ]
+        }
+        resources {
+            srcDirs += [
+                    "src/main/generated",
+                    rootProject.sourceSets.main.resources
+            ]
+        }
+    }
+}
