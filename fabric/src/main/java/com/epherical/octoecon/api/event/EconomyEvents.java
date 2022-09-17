@@ -1,8 +1,12 @@
 package com.epherical.octoecon.api.event;
 
+import com.epherical.octoecon.api.Currency;
 import com.epherical.octoecon.api.Economy;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class EconomyEvents {
 
@@ -10,6 +14,14 @@ public final class EconomyEvents {
         for (EconomyChange call : calls) {
             call.onEconomyChanged(economy);
         }
+    });
+
+    public static final Event<CurrencyAdd> CURRENCY_ADD_EVENT = EventFactory.createArrayBacked(CurrencyAdd.class, calls -> () -> {
+        List<Currency> currencyList = new ArrayList<>();
+        for (CurrencyAdd call : calls) {
+            currencyList.addAll(call.addCurrency());
+        }
+        return currencyList;
     });
 
 
@@ -21,6 +33,16 @@ public final class EconomyEvents {
          * @param economy
          */
         void onEconomyChanged(Economy economy);
+    }
+
+    /**
+     * This event MUST be called by an implementation that wishes to add additional currency support.
+     */
+    public interface CurrencyAdd {
+        /**
+         * Called by an implementation that wishes to allow other mods to add additional currencies.
+         */
+        List<Currency> addCurrency();
     }
 
 }
