@@ -17,7 +17,7 @@ public final class EconomyEvents {
     });
 
     public static final Event<CurrencyAdd> CURRENCY_ADD_EVENT = EventFactory.createArrayBacked(CurrencyAdd.class, calls -> () -> {
-        List<Currency> currencyList = new ArrayList<>();
+        List<Currency<?>> currencyList = new ArrayList<>();
         for (CurrencyAdd call : calls) {
             currencyList.addAll(call.addCurrency());
         }
@@ -42,7 +42,7 @@ public final class EconomyEvents {
         /**
          * Called by an implementation that wishes to allow other mods to add additional currencies.
          */
-        List<Currency> addCurrency();
+        List<Currency<?>> addCurrency();
     }
 
 }

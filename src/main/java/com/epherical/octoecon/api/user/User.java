@@ -23,27 +23,27 @@ public interface User extends EconomyIdentity {
      * @param currency The currency to get the balance of
      * @return the value in that currency
      */
-    double getBalance(Currency currency);
+    <T extends Number> T getBalance(Currency<T> currency);
 
-    Map<Currency, Double> getAllBalances();
+    Map<Currency<? extends Number>, ? extends Number> getAllBalances();
 
-    boolean hasAmount(Currency currency, double amount);
+    <T extends Number> boolean hasAmount(Currency<T> currency, T amount);
 
-    Transaction resetBalance(Currency currency);
+    <T extends Number> Transaction<T> resetBalance(Currency<T> currency);
 
-    Map<Currency, Transaction> resetAllBalances();
+    Map<Currency<? extends Number>, Transaction<?>> resetAllBalances();
 
-    Transaction setBalance(Currency currency, double amount);
+    <T extends Number> Transaction<T> setBalance(Currency<T> currency, T amount);
 
-    Transaction sendTo(User user, Currency currency, double amount);
+    <T extends Number> Transaction<T> sendTo(User user, Currency<T> currency, T amount);
 
-    Transaction depositMoney(Currency currency, double amount, String reason);
+    <T extends Number> Transaction<T> depositMoney(Currency<T> currency, T amount, String reason);
 
-    Transaction withdrawMoney(Currency currency, double amount, String reason);
+    <T extends Number> Transaction<T> withdrawMoney(Currency<T> currency, T amount, String reason);
 
     /**
      * For implementations that with to add a transaction through other methods directly to the user.
      */
-    void addTransaction(Transaction transaction);
+    <T extends Number> void addTransaction(Transaction<T> transaction);
 
 }

@@ -13,12 +13,12 @@ public interface Economy {
 
     boolean enabled();
 
-    Collection<Currency> getCurrencies();
+    Collection<Currency<?>> getCurrencies();
 
-    Currency getDefaultCurrency();
+    Currency<?> getDefaultCurrency();
 
     @Nullable
-    Currency getCurrency(ResourceLocation identifier);
+    Currency<?> getCurrency(ResourceLocation identifier);
 
     /**
      * @param identifier the identifier of the account to get or create.

@@ -3,16 +3,16 @@ package com.epherical.octoecon.api;
 import com.epherical.octoecon.api.transaction.Transaction;
 import com.epherical.octoecon.api.user.User;
 
-public interface BalanceProvider {
+public interface BalanceProvider<T extends Number> {
 
-    double getBalance(User user);
+    T getBalance(User user);
 
-    Transaction setBalance(User user, double amount, Currency currencyUsed);
+    Transaction<T> setBalance(User user, T amount, Currency<T> currencyUsed);
 
-    Transaction sendTo(User from, User to, double amount, Currency currencyUsed);
+    Transaction<T> sendTo(User from, User to, T amount, Currency<T> currencyUsed);
 
-    Transaction deposit(User user, double amount, String reason, Currency currencyUsed);
+    Transaction<T> deposit(User user, T amount, String reason, Currency<T> currencyUsed);
 
-    Transaction withdraw(User user, double amount, String reason, Currency currencyUsed);
+    Transaction<T> withdraw(User user, T amount, String reason, Currency<T> currencyUsed);
 
 }

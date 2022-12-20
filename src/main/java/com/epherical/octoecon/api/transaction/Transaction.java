@@ -4,20 +4,20 @@ import com.epherical.octoecon.api.Currency;
 import com.epherical.octoecon.api.user.User;
 import net.minecraft.world.entity.player.Player;
 
-public interface Transaction {
+public interface Transaction<T extends Number> {
 
 
     /**
      * Which currency was used during the transaction.
      * @return the {@link Currency} involved in the transaction
      */
-    Currency getCurrency();
+    Currency<T> getCurrency();
 
     /**
      * How much the transaction is worth. This does not return the entire value of the {@link User} just the delta of their value.
      * @return the amount of money that the {@link User} will change by.
      */
-    double getTransactionDelta();
+    T getTransactionDelta();
 
     /**
      * @return The {@link User} involved in the transaction
